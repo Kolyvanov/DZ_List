@@ -18,6 +18,7 @@ public class Main {
                     String input = scanner1.nextLine();
                     list.add(input);
                     System.out.println("Итоговое количество покупок: " + list.size());
+                    break;
                 case 2:
                     System.out.println("Список покупок:");
                     boolean empty = false;
@@ -27,14 +28,38 @@ public class Main {
                             empty = true;
                         }
                     }
-                    if (empty) {
+                    if (!empty) {
                         System.out.println("Покупок нет");
                     }
+                    break;
 
-                }
                 case 3:
+                    System.out.println("Список покупок:");
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println((i + 1) + ". " + list.get(i));
+                    }
+                    int shopNumber;
+                    System.out.println("Какую покупку хотите удалить? Введите номер или название");
+                    String shop = scanner1.nextLine();
+                    try {
+                        shopNumber = Integer.parseInt(shop);
+                        String shopRemove = list.get(shopNumber - 1);
+                        list.remove(shopNumber - 1);
 
+                        System.out.println("Покупка " + '"' + shopRemove + '"' + " Удалена. Список покупок:");
+                        for (int i = 0; i < list.size(); i++) {
+                            System.out.println((i + 1) + ". " + list.get(i));
+                        }
+                    } catch (NumberFormatException e) {
+                        list.remove(shop);
+                        System.out.println("Покупка " + '"' + shop + '"' + " Удалена. Список покупок:");
+                        for (int i = 0; i < list.size(); i++) {
+                            System.out.println((i + 1) + ". " + list.get(i));
+                        }
+                    }
+                    break;
             }
         }
     }
 }
+
